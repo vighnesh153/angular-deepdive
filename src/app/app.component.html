@@ -1,7 +1,13 @@
-<h1>Hi there, {{ title }} rocks</h1>
+<h1>Hi there, {{ pokemonName }} rocks</h1>
 
-<input type="text" [(ngModel)]="title">
+<!-- Manual 2 way binding -->
+<!-- <input type="text" (input)="onUpdatePokemonName($event)" [value]="title" /> -->
 
-<app-server></app-server>
+<!-- automatic 2 way binding -->
+<input type="text" [(ngModel)]="pokemonName" />
+
+<hr>
+
+<app-servers></app-servers>
 
 <router-outlet></router-outlet>
