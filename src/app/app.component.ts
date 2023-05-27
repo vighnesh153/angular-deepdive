@@ -1,12 +1,49 @@
-import { Component } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent
+  implements
+    OnInit,
+    OnChanges,
+    DoCheck,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit,
+    AfterViewChecked,
+    OnDestroy
+{
   pokemonName = 'Pikachu';
+
+  // invoked after component is initialized
+  ngOnInit() {}
+  // invoked after some input property changes
+  ngOnChanges() {}
+  // invoked during every change detection run
+  ngDoCheck() {}
+  // invoked after content (ng-content) has been projected into view
+  ngAfterContentInit() {}
+  // invoked after projected content has been checked
+  ngAfterContentChecked() {}
+  // invoked after component's view (and child views) have been initialized
+  ngAfterViewInit() {}
+  // invoked every time the component's view (and child views) have been checked
+  ngAfterViewChecked() {}
+  // invoked before the component is destroyed
+  ngOnDestroy() {}
 
   onUpdatePokemonName(event: Event) {
     const target = event.target as HTMLInputElement;
