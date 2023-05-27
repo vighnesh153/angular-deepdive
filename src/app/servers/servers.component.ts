@@ -1,38 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IServer } from '../IServer';
+import { ServersService } from '../services/servers.service';
 
 @Component({
   selector: 'app-servers',
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.scss'],
 })
-export class ServersComponent {
+export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCount = 0;
   serverName = '';
   servers: IServer[] = [];
 
-  constructor() {
+  constructor(private serversService: ServersService) {
     setTimeout(() => {
       this.allowNewServer = true;
     }, 2000);
   }
 
+  ngOnInit(): void {
+    this.servers = this.serversService.servers;
+  }
+
   onCreateServer() {
-    this.servers.push({
-      id: Math.random().toString(16).slice(2, 7),
-      name: this.serverName || `server ${this.servers.length}`,
-      status: Math.random() < 0.5 ? 'online' : 'offline',
-    });
+    const serverName = this.serverName || `server ${this.servers.length}`;
+    this.serversService.createServer(serverName);
   }
 
-  onToggleStatus({ id: serverId }: Pick<IServer, 'id'>) {
-    const server = this.servers.find((server) => server.id === serverId)!;
-    server.status = server.status === 'online' ? 'offline' : 'online';
+  onToggleStatus(options: Pick<IServer, 'id'>) {
+    this.serversService.toggleStatus(options);
   }
 
-  updateServerName({ name, id: serverId }: Pick<IServer, 'name' | 'id'>) {
-    const server = this.servers.find((server) => server.id === serverId)!;
-    server.name = name;
+  updateServerName(options: Pick<IServer, 'name' | 'id'>) {
+    this.serversService.updateServerName(options);
   }
 }

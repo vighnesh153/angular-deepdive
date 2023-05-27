@@ -4,17 +4,20 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { IServer } from '../IServer';
+import { LoggingService } from '../services/logging.service';
 
 @Component({
   selector: 'app-server',
   templateUrl: './server.component.html',
   styleUrls: ['./server.component.scss'],
 })
-export class ServerComponent {
+export class ServerComponent implements OnChanges {
   @Input()
   serverId: IServer['id'];
 
@@ -38,6 +41,14 @@ export class ServerComponent {
   bla: ElementRef<HTMLInputElement>;
 
   isEditingServerName = false;
+
+  constructor(private loggingService: LoggingService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['status']?.currentValue) {
+      this.loggingService.logStatusChange(changes['status'].currentValue);
+    }
+  }
 
   onToggleStatus() {
     this.toggleStatus.emit({ id: this.serverId });
