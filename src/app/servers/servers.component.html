@@ -5,10 +5,23 @@
   </button>
 
   <!-- if else -->
-  <p *ngIf="serverCount === 0; else serverCountPositive">No servers created</p>
+  <p *ngIf="servers.length === 0; else serverCountPositive">
+    No servers created
+  </p>
   <ng-template #serverCountPositive>
     <p>Server count: {{ serverCount }}</p>
   </ng-template>
+
+  <!-- custom structural directive -->
+  <div *appUnless="servers.length % 2 !== 1">Odd server count</div>
+
+  <!-- ngSwitch -->
+  <div [ngSwitch]="servers.length">
+    <p *ngSwitchCase="0">0 servers</p>
+    <p *ngSwitchCase="1">1 server</p>
+    <p *ngSwitchCase="2">2 servers</p>
+    <p *ngSwitchDefault>Many servers</p>
+  </div>
 
   <!-- for loop -->
   <app-server

@@ -1,32 +1,34 @@
 <h2>Server</h2>
-<p>Id = {{ serverId }}</p>
-<div>
-  <p>Name = {{ name }}</p>
-  <input
-    type="text"
-    [value]="name"
-    (keyup)="onUpdateName()"
-    #serverNameInput
+<section>
+  <p appBasicHighlightDirective>Id = {{ serverId }}</p>
+  <div>
+    <p appBetterHighlight [defaultColor]="'lightblue'">Name = {{ name }}</p>
+    <input
+      type="text"
+      [value]="name"
+      (keyup)="onUpdateName()"
+      #serverNameInput
+      [ngStyle]="{
+        display: isEditingServerName ? 'inline-block' : 'none'
+      }"
+    />
+  </div>
+  <button (click)="isEditingServerName = !isEditingServerName">
+    {{ isEditingServerName ? "Done" : "Edit Name" }}
+  </button>
+  <p
     [ngStyle]="{
-      display: isEditingServerName ? 'inline-block' : 'none'
+      color: status === 'online' ? 'green' : 'red'
     }"
-  />
-</div>
-<button (click)="isEditingServerName = !isEditingServerName">
-  {{ isEditingServerName ? "Done" : "Edit Name" }}
-</button>
-<p
-  [ngStyle]="{
-    color: status === 'online' ? 'green' : 'red'
-  }"
-  [ngClass]="{
-    'server-online': status === 'online',
-    'server-offline': status === 'offline',
-  }"
->
-  Status = {{ status }}
-</p>
-<button (click)="onToggleStatus()">Toggle status</button>
-
-<!-- similar to props.children -->
-<ng-content></ng-content>
+    [ngClass]="{
+      'server-online': status === 'online',
+      'server-offline': status === 'offline',
+    }"
+  >
+    Status = {{ status }}
+  </p>
+  <button (click)="onToggleStatus()">Toggle status</button>
+  
+  <!-- similar to props.children -->
+  <ng-content></ng-content>
+</section>
