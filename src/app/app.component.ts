@@ -12,6 +12,7 @@ import {
 import { ServersService } from './services/servers.service';
 import { IServer } from './IServer';
 import { filter, interval, map } from 'rxjs';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -32,11 +33,16 @@ export class AppComponent
   pokemonName = 'Pikachu';
   servers: IServer[] = [];
 
-  constructor(private serversService: ServersService) {}
+  constructor(
+    private serversService: ServersService,
+    private usersService: UsersService
+  ) {}
 
   // invoked after component is initialized
   ngOnInit() {
     this.servers = this.serversService.servers;
+
+    this.usersService.getAllUsers();
 
     // interval(1000)
     //   .pipe(
