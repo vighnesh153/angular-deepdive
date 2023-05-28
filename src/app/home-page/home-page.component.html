@@ -1,0 +1,8 @@
+<h2>Homepage</h2>
+<div *ngIf="getIsLoggedIn()">
+  <p>Welcome, user.</p>
+  <button (click)="onLogout()">Logout</button>
+</div>
+<div *ngIf="!getIsLoggedIn()">
+  <button (click)="onLogin()">Login</button>
+</div>

@@ -11,6 +11,7 @@ import { BetterHighlightDirective } from './better-highlight.directive';
 import { UnlessDirective } from './unless.directive';
 import { ServerPageComponent } from './server-page/server-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BetterHighlightDirective,
     UnlessDirective,
     ServerPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
