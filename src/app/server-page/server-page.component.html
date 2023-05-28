@@ -1,0 +1,7 @@
+<app-server
+  [serverId]="currentServer?.id ?? ''"
+  [serverName]="currentServer?.name ?? ''"
+  [serverStatus]="currentServer?.status ?? 'offline'"
+  (toggleStatus)="onToggleStatus($event)"
+  (updateServerName)="updateServerName($event)"
+></app-server>

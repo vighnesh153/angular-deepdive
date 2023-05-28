@@ -9,7 +9,6 @@ import { ServersService } from '../services/servers.service';
 })
 export class ServersComponent implements OnInit {
   allowNewServer = false;
-  serverCount = 0;
   serverName = '';
   servers: IServer[] = [];
 

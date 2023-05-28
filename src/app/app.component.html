@@ -6,8 +6,21 @@
 <!-- automatic 2 way binding -->
 <input type="text" [(ngModel)]="pokemonName" />
 
-<hr>
+<hr />
 
-<app-servers></app-servers>
+<ul>
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/servers">Servers</a></li>
+  <ul>
+    <li *ngFor="let server of servers">
+      <a
+        [routerLink]="['/servers', server.id]"
+        [queryParams]="{ allowEdit: 1 }"
+        fragment="status"
+        >{{ server.name }}</a
+      >
+    </li>
+  </ul>
+</ul>
 
 <router-outlet></router-outlet>

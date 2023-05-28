@@ -9,6 +9,8 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { ServersService } from './services/servers.service';
+import { IServer } from './IServer';
 
 @Component({
   selector: 'app-root',
@@ -27,9 +29,14 @@ export class AppComponent
     OnDestroy
 {
   pokemonName = 'Pikachu';
+  servers: IServer[] = [];
+
+  constructor(private serversService: ServersService) {}
 
   // invoked after component is initialized
-  ngOnInit() {}
+  ngOnInit() {
+    this.servers = this.serversService.servers;
+  }
   // invoked after some input property changes
   ngOnChanges() {}
   // invoked during every change detection run
