@@ -1,8 +1,29 @@
 <div style="margin-top: 20px">
-  <input type="text" [(ngModel)]="serverName" />
-  <button [disabled]="!allowNewServer" (click)="onCreateServer()">
-    Add server
-  </button>
+  <!-- <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
+    <label for="serverNameInput">Server name</label>
+    <input
+      id="serverNameInput"
+      type="text"
+      [(ngModel)]="serverName"
+      ngModel
+      name="serverName"
+    />
+    <br />
+    <button [disabled]="!allowNewServer" type="submit">
+      Add server
+    </button>
+  </form> -->
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm">
+    <label for="serverNameInput">Server name</label>
+    <input
+      id="serverNameInput"
+      type="text"
+      formControlName="serverName"
+    />
+    <br />
+    <button [disabled]="!allowNewServer" type="submit">Add server</button>
+  </form>
 
   <!-- if else -->
   <p *ngIf="servers.length === 0; else serverCountPositive">

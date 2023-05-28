@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IServer } from '../IServer';
 import { ServersService } from '../services/servers.service';
+import { FormGroup, NgForm } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-servers',
@@ -9,8 +12,12 @@ import { ServersService } from '../services/servers.service';
 })
 export class ServersComponent implements OnInit {
   allowNewServer = false;
-  serverName = '';
   servers: IServer[] = [];
+
+  // @ViewChild('signUpForm', { static: true })
+  // signUpForm: NgForm;
+
+  signUpForm: FormGroup;
 
   constructor(private serversService: ServersService) {
     setTimeout(() => {
@@ -20,10 +27,16 @@ export class ServersComponent implements OnInit {
 
   ngOnInit(): void {
     this.servers = this.serversService.servers;
+
+    this.signUpForm = new FormGroup({
+      serverName: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    });
   }
 
-  onCreateServer() {
-    const serverName = this.serverName || `server ${this.servers.length}`;
+  onSubmit() {
+    // console.log(this.signUpForm);
+    console.log(this.signUpForm);
+    const serverName = this.signUpForm.value.serverName || `server ${this.servers.length}`;
     this.serversService.createServer(serverName);
   }
 
