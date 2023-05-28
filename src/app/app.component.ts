@@ -38,18 +38,18 @@ export class AppComponent
   ngOnInit() {
     this.servers = this.serversService.servers;
 
-    interval(1000)
-      .pipe(
-        filter((data, index) => {
-          return data % 2 === 0;
-        }),
-        map((data, index) => {
-          return `Round: ${data} (${index})`;
-        })
-      )
-      .subscribe((count) => {
-        console.log(count);
-      });
+    // interval(1000)
+    //   .pipe(
+    //     filter((data, index) => {
+    //       return data % 2 === 0;
+    //     }),
+    //     map((data, index) => {
+    //       return `Round: ${data} (${index})`;
+    //     })
+    //   )
+    //   .subscribe((count) => {
+    //     console.log(count);
+    //   });
   }
   // invoked after some input property changes
   ngOnChanges() {}

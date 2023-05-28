@@ -12,6 +12,7 @@ import { UnlessDirective } from './unless.directive';
 import { ServerPageComponent } from './server-page/server-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { PokemonNameDecoratorPipe } from './pipes/pokemon-name-decorator.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     UnlessDirective,
     ServerPageComponent,
     PageNotFoundComponent,
-    HomePageComponent
+    HomePageComponent,
+    PokemonNameDecoratorPipe
   ],
   imports: [
     BrowserModule,
