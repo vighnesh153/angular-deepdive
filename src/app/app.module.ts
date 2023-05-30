@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomePageComponent } from './home-page/home-page.component';
 import { PokemonNameDecoratorPipe } from './pipes/pokemon-name-decorator.pipe';
 import { UsersInterceptor } from './interceptors/users.interceptor';
+import { AlertComponent } from './alert/alert.component';
+import { DynamicComponentPlaceholderDirective } from './dynamic-component-placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { UsersInterceptor } from './interceptors/users.interceptor';
     PageNotFoundComponent,
     HomePageComponent,
     PokemonNameDecoratorPipe,
+    AlertComponent,
+    DynamicComponentPlaceholderDirective,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,15 @@
-<h1>Hi there, {{ pokemonName | pokemonNameDecorator  }} rocks</h1>
+<h1>Hi there, {{ pokemonName | pokemonNameDecorator }} rocks</h1>
+
+<ng-template appDynamicComponentPlaceholder></ng-template>
+<!-- <app-alert type="success"></app-alert> -->
+
+<br />
+
+<div>
+  <button (click)="onShowAlert()">Show alert</button>
+</div>
+
+<br />
 
 <!-- Manual 2 way binding -->
 <!-- <input type="text" (input)="onUpdatePokemonName($event)" [value]="title" /> -->

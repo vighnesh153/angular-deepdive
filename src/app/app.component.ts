@@ -8,11 +8,14 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { ServersService } from './services/servers.service';
 import { IServer } from './IServer';
 import { filter, interval, map } from 'rxjs';
 import { UsersService } from './services/users.service';
+import { DynamicComponentPlaceholderDirective } from './dynamic-component-placeholder.directive';
+import { AlertComponent } from './alert/alert.component';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +33,9 @@ export class AppComponent
     AfterViewChecked,
     OnDestroy
 {
+  @ViewChild(DynamicComponentPlaceholderDirective, { static: true })
+  appDynamicComponentPlaceholder: DynamicComponentPlaceholderDirective;
+
   pokemonName = 'Pikachu';
   servers: IServer[] = [];
 
@@ -75,5 +81,15 @@ export class AppComponent
   onUpdatePokemonName(event: Event) {
     const target = event.target as HTMLInputElement;
     this.pokemonName = target.value;
+  }
+
+  onShowAlert() {
+    const hostViewContainerRef =
+      this.appDynamicComponentPlaceholder.viewContainerRef;
+    hostViewContainerRef.clear();
+
+    const alertComponentRef =
+      hostViewContainerRef.createComponent(AlertComponent);
+    alertComponentRef.instance.type = 'error';
   }
 }

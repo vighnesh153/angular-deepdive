@@ -1,0 +1,11 @@
+<div
+  [ngStyle]="{
+    padding: '20px 10px',
+    border: '2px solid',
+    borderColor: type === 'success' ? 'green' : 'red',
+    backgroundColor: type === 'success' ? 'rgb(0, 255, 0, 0.15)' : 'rgb(255, 0, 0, 0.15)',
+    borderRadius: '10px',
+}"
+>
+  {{ type === "success" ? "Completed successfully" : "There was an error" }}
+</div>
