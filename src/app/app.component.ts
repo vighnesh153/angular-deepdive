@@ -9,6 +9,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  signal,
 } from '@angular/core';
 import { ServersService } from './services/servers.service';
 import { IServer } from './IServer';
@@ -36,7 +37,7 @@ export class AppComponent
   @ViewChild(DynamicComponentPlaceholderDirective, { static: true })
   appDynamicComponentPlaceholder: DynamicComponentPlaceholderDirective;
 
-  pokemonName = 'Pikachu';
+  pokemonName = signal('Pikachu');
   servers: IServer[] = [];
 
   constructor(
@@ -80,7 +81,8 @@ export class AppComponent
 
   onUpdatePokemonName(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.pokemonName = target.value;
+    this.pokemonName.update(() => target.value);
+    // this.pokemonName = target.value;
   }
 
   onShowAlert() {

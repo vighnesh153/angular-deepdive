@@ -1,4 +1,4 @@
-<h1>Hi there, {{ pokemonName | pokemonNameDecorator }} rocks</h1>
+<h1>Hi there, {{ pokemonName() | pokemonNameDecorator }} rocks</h1>
 
 <app-first-standalone></app-first-standalone>
 
@@ -17,7 +17,7 @@
 <!-- <input type="text" (input)="onUpdatePokemonName($event)" [value]="title" /> -->
 
 <!-- automatic 2 way binding -->
-<input type="text" [(ngModel)]="pokemonName" />
+<input type="text" [value]="pokemonName()" (keydown)="onUpdatePokemonName($event)" />
 
 <hr />
 
