@@ -17,6 +17,7 @@ import { PokemonNameDecoratorPipe } from './pipes/pokemon-name-decorator.pipe';
 import { UsersInterceptor } from './interceptors/users.interceptor';
 import { AlertComponent } from './alert/alert.component';
 import { DynamicComponentPlaceholderDirective } from './dynamic-component-placeholder.directive';
+import { FirstStandaloneComponent } from './first-standalone/first-standalone.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DynamicComponentPlaceholderDirective } from './dynamic-component-placeh
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FirstStandaloneComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsersInterceptor, multi: true },
